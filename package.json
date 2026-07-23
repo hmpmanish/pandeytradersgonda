@@ -1,0 +1,12 @@
+{
+  "name": "pandey-traders-root",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "postinstall": "npm install --prefix server",
+    "start": "npm start --prefix server"
+  }
+}
