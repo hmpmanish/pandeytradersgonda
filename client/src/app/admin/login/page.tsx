@@ -16,8 +16,10 @@ export default function AdminLogin() {
     setError('');
     setLoading(true);
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    console.log('Attempting login at:', `${apiUrl}/auth/login`);
+
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
       const { data } = await axios.post(`${apiUrl}/auth/login`, {
         email,
         password,
@@ -27,11 +29,16 @@ export default function AdminLogin() {
       localStorage.setItem('adminToken', data.token);
       router.push('/admin/dashboard');
     } catch (err: any) {
-      setError(
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : 'Failed to login. Please try again.'
-      );
+      console.error('Login error full object:', err);
+      if (!err.response) {
+        setError(`Network Error: Frontend is trying to call ${apiUrl}/auth/login but it failed. Check Vercel Env Vars or CORS.`);
+      } else {
+        setError(
+          err.response.data.message
+            ? err.response.data.message
+            : 'Failed to login. Please try again.'
+        );
+      }
     } finally {
       setLoading(false);
     }
