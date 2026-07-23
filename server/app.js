@@ -6,6 +6,8 @@ import mongoSanitize from 'express-mongo-sanitize';
 import xss from 'xss-clean';
 import rateLimit from 'express-rate-limit';
 
+import authRoutes from './routes/authRoutes.js';
+
 const app = express();
 
 // Global Middlewares
@@ -28,6 +30,9 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again in an hour!'
 });
 app.use('/api', limiter);
+
+// Mount Routes
+app.use('/api/auth', authRoutes);
 
 // Default Route
 app.get('/', (req, res) => {
