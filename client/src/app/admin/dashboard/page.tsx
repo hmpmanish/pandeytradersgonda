@@ -113,9 +113,17 @@ export default function AdminDashboard() {
 
           {/* Quick Actions Placeholder */}
           <div className="mt-8">
-            <h2 className="text-lg leading-6 font-medium text-gray-900 mb-4">Quick Actions</h2>
-            <div className="bg-white shadow rounded-lg p-6 text-center text-gray-500">
-              <p>CRUD features for Products and Categories will appear here.</p>
+            <h2 className="text-lg leading-6 font-medium text-gray-900 mb-4">Inventory Management</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <button onClick={() => router.push('/admin/dashboard/categories')} className="bg-white shadow rounded-lg p-6 text-center hover:bg-green-50 border-2 border-transparent hover:border-green-500 transition-all cursor-pointer">
+                <span className="block text-xl font-bold text-green-700 mb-2">Manage Categories</span>
+                <span className="text-sm text-gray-500">Create, edit, and delete product categories.</span>
+              </button>
+              
+              <button onClick={() => router.push('/admin/dashboard/products')} className="bg-white shadow rounded-lg p-6 text-center hover:bg-blue-50 border-2 border-transparent hover:border-blue-500 transition-all cursor-pointer">
+                <span className="block text-xl font-bold text-blue-700 mb-2">Manage Products</span>
+                <span className="text-sm text-gray-500">Upload product images, set pricing and stock.</span>
+              </button>
             </div>
           </div>
         </main>

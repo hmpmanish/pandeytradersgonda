@@ -7,6 +7,8 @@ import xss from 'xss-clean';
 import rateLimit from 'express-rate-limit';
 
 import authRoutes from './routes/authRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
+import productRoutes from './routes/productRoutes.js';
 
 const app = express();
 
@@ -33,6 +35,8 @@ app.use('/api', limiter);
 
 // Mount Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/products', productRoutes);
 
 // Default Route
 app.get('/', (req, res) => {
